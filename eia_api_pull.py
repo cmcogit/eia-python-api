@@ -2,6 +2,7 @@ import requests
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 us_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.US-10.Q").json()
 va_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.VA-10.Q").json()
@@ -38,6 +39,9 @@ for item in serialized_us:
 
 plt.plot(quarter, us_cost, color='g')
 plt.plot(quarter, va_cost, color='b')
+blue_patch = mpatches.Patch(color='blue', label='VA-Cost')
+green_patch = mpatches.Patch(color='green', label='US-Cost')
+plt.legend(handles=[blue_patch])
 # plt.plot(quarter, us_cost, color='orange')
 # plt.plot(us_cost)
 # plt.ylabel('some numbers')
