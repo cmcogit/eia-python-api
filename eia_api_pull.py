@@ -8,13 +8,8 @@ import matplotlib.patches as mpatches
 # va_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.VA-10.Q").json()
 mt_input_file = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MT&apikey=2GHJ6S64A86XPK88").json()
 
-nested_dict = mt_input_file['Time Series (Daily)']
-
 # for outer_k, outer_v in nested_dict.items():
 #     for inner_k, inner_v in outer_v.items():
-
-for date in nested_dict:
-    print(date, " Close: " + nested_dict[date]['4. close'])
 
 serialized_us = [] # US coal quarterly cost
 serialized_va = [] # VA coal quarterly cost
@@ -23,6 +18,11 @@ us_cost = []
 va_cost = []
 quarter = []
 mt_close = []
+
+mt_nested_dict = mt_input_file['Time Series (Daily)']
+
+for date in mt_nested_dict:
+    print(date, " Close: " + mt_nested_dict[date]['4. close'])
 
 # for daily in mt_input_file['Time Series (Daily)']:
 #     print(daily['4. close'])
@@ -43,7 +43,6 @@ mt_close = []
 
 # for item in serialized_us:
 #     quarter.append(item[0])
-
 
 
 # df = pd.DataFrame(input_file['series'][0]['data'])
