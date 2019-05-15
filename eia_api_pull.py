@@ -4,16 +4,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-us_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.US-10.Q").json()
-va_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.VA-10.Q").json()
+# us_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.US-10.Q").json()
+# va_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.VA-10.Q").json()
 mt_input_file = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MT&apikey=2GHJ6S64A86XPK88").json()
-# data = json.loads(mt_input_file)
-print(type(mt_input_file['Meta Data']))
-data = json.dumps(mt_input_file)
-print(type(data))
-# Time Series (Daily)
-for time_series in mt_input_file:
-    print(time_series)
+
+nested_dict = mt_input_file['Time Series (Daily)']
+
+# for outer_k, outer_v in nested_dict.items():
+#     for inner_k, inner_v in outer_v.items():
+
+for date in nested_dict:
+    print(date, " Close: " + nested_dict[date]['4. close'])
 
 serialized_us = [] # US coal quarterly cost
 serialized_va = [] # VA coal quarterly cost
@@ -26,22 +27,22 @@ mt_close = []
 # for daily in mt_input_file['Time Series (Daily)']:
 #     print(daily['4. close'])
 
-for e in us_input_file['series'][0]['data']:
-    e.append(us_input_file['series'][0]['series_id'])
-    serialized_us.append(e)
+# for e in us_input_file['series'][0]['data']:
+#     e.append(us_input_file['series'][0]['series_id'])
+#     serialized_us.append(e)
 
-for e in va_input_file['series'][0]['data']:
-    e.append(va_input_file['series'][0]['series_id'])
-    serialized_va.append(e)
+# for e in va_input_file['series'][0]['data']:
+#     e.append(va_input_file['series'][0]['series_id'])
+#     serialized_va.append(e)
 
-for item in serialized_us:
-    us_cost.append(item[1])
+# for item in serialized_us:
+#     us_cost.append(item[1])
 
-for item in serialized_va:
-    va_cost.append(item[1])
+# for item in serialized_va:
+#     va_cost.append(item[1])
 
-for item in serialized_us:
-    quarter.append(item[0])
+# for item in serialized_us:
+#     quarter.append(item[0])
 
 
 
