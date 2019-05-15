@@ -35,6 +35,7 @@ for item in serialized_us:
 # df = pd.DataFrame(input_file['series'][0]['data'])
 # df.columns = ['Q', '$/short ton', 'series_id']
 # df.to_excel("quarterly_coal_short_ton.xlsx")
+# making change from macbook
 
 
 plt.plot(quarter, us_cost, color='g')
