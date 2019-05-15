@@ -38,14 +38,11 @@ for item in serialized_us:
 # making change from macbook
 
 
-plt.plot(quarter, us_cost, color='g')
-plt.plot(quarter, va_cost, color='b')
-blue_patch = mpatches.Patch(color='blue', label='VA-Cost')
-green_patch = mpatches.Patch(color='green', label='US-Cost')
-plt.legend(handles=[blue_patch])
-# plt.plot(quarter, us_cost, color='orange')
-# plt.plot(us_cost)
-# plt.ylabel('some numbers')
+plt.plot(quarter, us_cost, color='g', label='US Line')
+plt.plot(quarter, va_cost, color='b', label='VA Line')
+plt.xlabel('Quarter')
+plt.ylabel('$/short ton')
+plt.legend()
 plt.show()
 # print(df.head(5))
 
