@@ -17,15 +17,28 @@ serialized_mt = [] # ArcelorMittal NYSE close daily
 us_cost = []
 va_cost = []
 quarter = []
-mt_close = []
+mt_qtr1_close = []
 
 mt_nested_dict = mt_input_file['Monthly Time Series']
 
 for date in mt_nested_dict:
-    d = {date:mt_nested_dict[date]['4. close']}
-    mt_nested_dict.update(d)
+    if date >= '2018-01-01' and date <= '2018-04-30':
+        qtr1_data = {date:mt_nested_dict[date]['4. close']}
+        mt_qtr1_close.append(qtr1_data)
+        # mt_qtr1_close.append(mt_nested_dict[date]['4. close'])
 
-print(mt_nested_dict)
+for e in mt_qtr1_close:
+    print(e)
+
+print(mt_qtr1_close[0]['2018-04-30'])
+
+    # print(mt_nested_dict[date]['4. close'])
+    # mt_cost = {date:mt_nested_dict[date]['4. close']}
+    # mt_nested_dict.update(d)
+
+# print(mt_qtr1_close)
+
+# print(mt_nested_dict)
 
 
 # for daily in mt_input_file['Time Series (Daily)']:
@@ -34,6 +47,8 @@ print(mt_nested_dict)
 # for e in us_input_file['series'][0]['data']:
 #     e.append(us_input_file['series'][0]['series_id'])
 #     serialized_us.append(e)
+
+# print(serialized_us)
 
 # for e in va_input_file['series'][0]['data']:
 #     e.append(va_input_file['series'][0]['series_id'])
