@@ -3,34 +3,52 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
+# Get todays date
+today = date.today()
+print("Today: " + str(today))
+
+one_yr_from_today = date(2019,5,18) + relativedelta(years=1)
+print("One year from today: " + str(one_yr_from_today))
+
+ten_yrs_ago = date.today() - relativedelta(years=10)
+print("Ten years ago from today: " + str(ten_yrs_ago))
+# # td = date.today()
+# # ten_yrs_ago = date(td) - relativedelta(year=10)
+# ten_yrs_ago = date(2019,5,18)+relativedelta(year=10)
+# print(ten_yrs_ago)
+
+
 
 # us_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.US-10.Q").json()
 # va_input_file = requests.get("http://api.eia.gov/series/?api_key=e2815357db5ba9ad7c6f782dd01b8be9&series_id=COAL.COST.VA-10.Q").json()
-mt_input_file = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=MT&apikey=2GHJ6S64A86XPK88").json()
+# mt_input_file = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=MT&apikey=2GHJ6S64A86XPK88").json()
 
-# for outer_k, outer_v in nested_dict.items():
-#     for inner_k, inner_v in outer_v.items():
+# # for outer_k, outer_v in nested_dict.items():
+# #     for inner_k, inner_v in outer_v.items():
 
-serialized_us = [] # US coal quarterly cost
-serialized_va = [] # VA coal quarterly cost
-serialized_mt = [] # ArcelorMittal NYSE close daily
-us_cost = []
-va_cost = []
-quarter = []
-mt_qtr1_close = []
+# serialized_us = [] # US coal quarterly cost
+# serialized_va = [] # VA coal quarterly cost
+# serialized_mt = [] # ArcelorMittal NYSE close daily
+# us_cost = []
+# va_cost = []
+# quarter = []
+# mt_qtr1_close = []
 
-mt_nested_dict = mt_input_file['Monthly Time Series']
+# mt_nested_dict = mt_input_file['Monthly Time Series']
 
-for date in mt_nested_dict:
-    if date >= '2018-01-01' and date <= '2018-04-30':
-        qtr1_data = {date:mt_nested_dict[date]['4. close']}
-        mt_qtr1_close.append(qtr1_data)
-        # mt_qtr1_close.append(mt_nested_dict[date]['4. close'])
+# for date in mt_nested_dict:
+#     if date >= '2018-01-01' and date <= '2018-04-30':
+#         qtr1_data = {date:mt_nested_dict[date]['4. close']}
+#         mt_qtr1_close.append(qtr1_data)
+#         # mt_qtr1_close.append(mt_nested_dict[date]['4. close'])
 
-for e in mt_qtr1_close:
-    print(e)
+# for e in mt_qtr1_close:
+#     print(e)
 
-print(mt_qtr1_close[0]['2018-04-30'])
+# print(mt_qtr1_close[0]['2018-04-30'])
 
     # print(mt_nested_dict[date]['4. close'])
     # mt_cost = {date:mt_nested_dict[date]['4. close']}
