@@ -26,14 +26,31 @@ from dateutil.relativedelta import relativedelta
 def get_metal_stocks_q1(m_1):
     month_cost = []
     serialized_list = []
-    quarter = 1
     input_file = requests.get(m_1).json()
     nested_dict = input_file['Monthly Time Series']
 
     for month in nested_dict:
-        serialized_list = {quarter:{month:nested_dict[month]['4. close']}}
-        month_cost.append(serialized_list)
+        a = month
+        a.split('-')
+        year,monthe,day = a.split('-')
+        if monthe == '01' or monthe == '02' or monthe == '03':
+            serialized_list = {year + "Q1":nested_dict[month]['4. close']}
+            # serialized_list = {quarter:{month:nested_dict[month]['4. close']}}
+            month_cost.append(serialized_list)
+        elif monthe == '04' or monthe == '05' or monthe == '06':
+            serialized_list = {year + "Q2":nested_dict[month]['4. close']}
+            # serialized_list = {quarter:{month:nested_dict[month]['4. close']}}
+            month_cost.append(serialized_list)
+        elif monthe == '07' or monthe == '08' or monthe == '9':
+            serialized_list = {year + "Q3":nested_dict[month]['4. close']}
+            # serialized_list = {quarter:{month:nested_dict[month]['4. close']}}
+            month_cost.append(serialized_list)
+        elif monthe == '10' or monthe == '11' or monthe == '12':
+            serialized_list = {year + "Q4":nested_dict[month]['4. close']}
+            # serialized_list = {quarter:{month:nested_dict[month]['4. close']}}
+            month_cost.append(serialized_list)
     print(month_cost)
+    # print(month_cost)
     # mt_qtr1_close = {}
 
     # for date in mt_nested_dict:
